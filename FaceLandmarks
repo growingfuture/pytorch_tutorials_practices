@@ -1,0 +1,24 @@
+#mirae_mia_kim
+
+
+class FaceLandmarksDataset():
+    def __init__(self, dataset):
+        self.datadir=dataset
+        self.show_landmarks()
+    def show_landmarks(self):
+        landmarks_df=pd.read_csv(os.path.join(self.datadir,'face_landmarks.csv')) #download at https://download.pytorch.org/tutorial/faces.zip
+                                           
+        for i in range(5):
+            img_name = landmarks_frame.iloc[i,0]
+            landmarks=landmarks_frame.iloc[i,1:].as_matrix()
+            landmarks=landmarks.astype('float').reshape(-1,2)
+
+            ax=plt.subplot()
+            plt.imshow(io.imread(os.path.join(self.datadir,img_name)))
+            plt.scatter(landmarks[:,0], landmarks[:,1], s=10, marker='.', c='r')
+            plt.pause(5)
+
+
+    
+if __name__ == '__main__':
+    FaceLandmarksDataset('/home/datascience/다운로드/mia/data/faces/') #put path dir where datasets were stored
